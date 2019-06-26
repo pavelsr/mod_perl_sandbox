@@ -2,7 +2,7 @@
 
 This repository is for debugging different issues under mod_perl
 
-Example:
+Example of issues:
 
 https://stackoverflow.com/questions/56691207/how-to-enable-perl-debugger-under-mod-perl
 
@@ -36,6 +36,22 @@ Solution: check permissions and make you CGI script executable
 `apt-get install libperl-dev`
 
 ## Cannot load modules/mod_perl.so into server: /usr/local/apache2/modules/mod_perl.so: cannot open shared object file: No such file or directory
+
+```
+cpm install -gv mod_perl2
+```
+
+or
+
+```
+# get mirror from http://perl.apache.org/download/
+curl -L http://mirror.linux-ia64.org/apache/perl/mod_perl-2.0.10.tar.gz -o mod_perl.tar.gz
+tar xvfz mod_perl.tar.gz
+cd mod_perl-2.0.10
+perl Makefile.PL <options>
+# e.g.  perl Makefile.PL MP_DEBUG=1
+make && make test && make install
+```
 
 # SEE ALSO
 
