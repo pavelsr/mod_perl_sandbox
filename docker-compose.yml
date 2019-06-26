@@ -16,8 +16,8 @@ services:
             - ${PWD}/httpd.conf:/usr/local/apache2/conf/httpd.conf
             - ${PWD}/env.pl:/usr/local/apache2/htdocs/env.pl
             - ${PWD}/testd.pl:/usr/local/apache2/htdocs/testd.pl
-        #environment:
-        #- PERL5OPT=-d    
-        #- PERLDB_OPTS=N f=1
-        # - HTTPD_PARAMS=-DMODPERL
+        environment:
+        - PERL5OPT=-d    
+        - PERLDB_OPTS=N f=1
+        #- HTTPD_PARAMS=-DMODPERL
         command: ["sh", "-c", "/usr/local/apache2/bin/httpd -DFOREGROUND -DMODPERL"]
