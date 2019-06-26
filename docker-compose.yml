@@ -1,0 +1,23 @@
+version: '2'
+
+# docker-compose run site apachectl -t -D DUMP_RUN_CFG
+# see original config :
+# docker run -it httpd cat /usr/local/apache2/conf/httpd.conf
+
+services:
+    site:
+        # image: httpd
+        image: pavelsr/mod_perl_sandbox:latest
+        build: .
+        container_name: mod_perl_sandbox
+        ports:
+            - "3000:80"
+        volumes:
+            - ${PWD}/httpd.conf:/usr/local/apache2/conf/httpd.conf
+            - ${PWD}/env.pl:/usr/local/apache2/htdocs/env.pl
+            - ${PWD}/testd.pl:/usr/local/apache2/htdocs/testd.pl
+        #environment:
+        #- PERL5OPT=-d    
+        #- PERLDB_OPTS=N f=1
+        # - HTTPD_PARAMS=-DMODPERL
+        command: ["sh", "-c", "/usr/local/apache2/bin/httpd -DFOREGROUND -DMODPERL"]
